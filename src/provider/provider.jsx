@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer } from 'react';
 const AppContext = createContext();
 
 const initialUserValue = () => {
-  const item = localStorage.getItem("OLSOFTWARELOGIN");
+  const item = localStorage.getItem("profile");
   if (item) {
     return JSON.parse(atob(item));
   }

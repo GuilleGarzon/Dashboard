@@ -12,7 +12,7 @@ export const Auth = ({ component }) => {
   }, [component]);
 
   const checkUser = () => {
-    const user = localStorage.getItem("OLSOFTWARELOGIN");
+    const user = localStorage.getItem("profile");
     console.log(user);
     if (!user) {
       navigate("/login");

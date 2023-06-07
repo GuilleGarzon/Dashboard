@@ -29,7 +29,7 @@ export const Header = () => {
       type: "LOGIN",
       value: null,
     });
-    localStorage.removeItem("Profile");
+    localStorage.removeItem("profile");
   };
 
   return (

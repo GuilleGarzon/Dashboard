@@ -4,7 +4,7 @@ import { useAppContext } from "../../provider/provider";
 
 import { login } from "../../services/login";
 import { getUser } from "../../services/users";
-import Form from "react-bootstrap/Form";
+import { Form } from "react-bootstrap";
 
 export const Login = () => {
 
@@ -37,7 +37,7 @@ export const Login = () => {
     const response = await getUser(user.userId);
     if (response.data) {
       localStorage.setItem(
-        "OLSOFTWARELOGIN",
+        "profile",
         (JSON.stringify(response.data))
       );
       dispatch({
@@ -51,7 +51,7 @@ export const Login = () => {
   return (       
       <Form onSubmit={handleLogin}>        
           
-          <Form.Group className='mb-4' controlId="username">
+          <Form.Group className='mb-4 input-group input-group-lg' controlId="username">
             <Form.Control type="text" 
               value={username}
               placeholder="Please enter Username" 
@@ -60,7 +60,7 @@ export const Login = () => {
             />
           </Form.Group>    
 
-          <Form.Group className='mb-4' controlId="password">
+          <Form.Group className='mb-4 input-group input-group-lg' controlId="password">
             <Form.Control type="password" 
               value={password}
               placeholder="Please enter Password" 
@@ -69,7 +69,7 @@ export const Login = () => {
             />
           </Form.Group>
         
-        <button className="btn btn-lg btn-outline-primary mb-5" type="button">
+        <button className=" btn btn-outline-primary btn-lg" type="submit">
           Login
         </button>
       </Form>
