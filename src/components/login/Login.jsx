@@ -5,10 +5,6 @@ import { useAppContext } from "../../provider/provider";
 import { login } from "../../services/login";
 import { getUser } from "../../services/users";
 import Form from "react-bootstrap/Form";
-<<<<<<< HEAD
-=======
-
->>>>>>> 915f3ff (feat:Change url services)
 
 export const Login = () => {
 
