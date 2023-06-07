@@ -28,13 +28,7 @@ const reducer = (state, action) => {
       ...state,
       user: action.value,
     };
-  }
-  if (action.type === "ALERT") {
-    return {
-      ...state,
-      myAlert: action.value,
-    };
-  }
+  }  
   return state;
 };
 

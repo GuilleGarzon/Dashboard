@@ -13,12 +13,10 @@ export const Auth = ({ component }) => {
 
   const checkUser = () => {
     const user = localStorage.getItem("profile");
-    console.log(user);
     if (!user) {
       navigate("/login");
     } else {
       if (location.pathname === "/login") {
-        console.log('pathname', location.pathname)
         navigate("/");
       }
     }

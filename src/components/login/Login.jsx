@@ -5,6 +5,7 @@ import { useAppContext } from "../../provider/provider";
 import { login } from "../../services/login";
 import { getUser } from "../../services/users";
 import { Form } from "react-bootstrap";
+import Swal from 'sweetalert2'
 
 export const Login = () => {
 
@@ -21,15 +22,18 @@ export const Login = () => {
     if (response.length) {
       dispatchUserLogin(response[0]);
       setUsername("");
-      setPassword("");
+      setPassword(""); 
+      Swal.fire({        
+        text: `Bienvenido al Dashboard!`,
+        icon: 'success',
+        confirmButtonText: `Vamos`,
+      });     
     } else {
-      dispatch({
-        type: "ALERT",
-        value: {
-          error: true,
-          message: "Usuario o contraseña incorrectos",
-        },
-      });
+      Swal.fire({          
+        text: 'Credenciales inválidas',
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+      });      
     }
   };
 
@@ -38,7 +42,7 @@ export const Login = () => {
     if (response.data) {
       localStorage.setItem(
         "profile",
-        (JSON.stringify(response.data))
+        btoa(JSON.stringify(response.data))
       );
       dispatch({
         type: "LOGIN",
