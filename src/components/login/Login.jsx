@@ -1,28 +1,58 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../provider/provider";
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../provider/provider';
 
 import { login } from "../../services/login";
 import { getUser } from "../../services/users";
 import { Form } from "react-bootstrap";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
-export const Login = () => {
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export const Login = () => {  
+  const [form, setForm] = useState({});
   const { dispatch } = useAppContext();
 
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const response = await login(username, password);
+  const handleChange = e => {
+    const { value, name } = e.target;
+    setForm({ ...form, [name]: value });
+  };  
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   const response = await login(form.username, form.password);
+  //   console.log(response.length);
+
+  //   if (response.length) {
+  //     localStorage.setItem(
+  //       "profile",
+  //       btoa(JSON.stringify(response.data))
+  //     );
+  //     dispatch({
+  //       type: "LOGIN",
+  //       value: response.data,
+  //     });
+  //     navigate("/");
+  //   }    
+  // }  
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    fetchData();
+  };
+
+  const fetchData = async () => {        
+    const response = await login(form.username, form.password);
     if (response.length) {
-      dispatchUserLogin(response[0]);
-      setUsername("");
-      setPassword(""); 
+      localStorage.setItem(
+      "profile",
+      (JSON.stringify(response))
+      );
+      dispatch({
+        type: "LOGIN",
+        value: response,
+      });
+      navigate("/");
       Swal.fire({        
         text: `Bienvenido al Dashboard!`,
         icon: 'success',
@@ -36,39 +66,26 @@ export const Login = () => {
       });      
     }
   };
-
-  const dispatchUserLogin = async (user) => {
-    const response = await getUser(user.userId);
-    if (response.data) {
-      localStorage.setItem(
-        "profile",
-        btoa(JSON.stringify(response.data))
-      );
-      dispatch({
-        type: "LOGIN",
-        value: response.data,
-      });
-      navigate("/");
-    }
-  };
-
+  
   return (       
-      <Form onSubmit={handleLogin}>        
+      <form onSubmit={handleLogin}>        
           
           <Form.Group className='mb-4 input-group input-group-lg' controlId="username">
-            <Form.Control type="text" 
-              value={username}
+            <Form.Control 
+              type="text" 
+              name="username"
               placeholder="Please enter Username" 
-              onChange={({ target }) => setUsername(target.value)}
+              onChange={handleChange}
               required
             />
           </Form.Group>    
 
           <Form.Group className='mb-4 input-group input-group-lg' controlId="password">
-            <Form.Control type="password" 
-              value={password}
+            <Form.Control 
+              type="password" 
+              name="password"              
               placeholder="Please enter Password" 
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={handleChange}
               required
             />
           </Form.Group>
@@ -76,6 +93,6 @@ export const Login = () => {
         <button className=" btn btn-outline-primary btn-lg" type="submit">
           Login
         </button>
-      </Form>
+      </form>
   );
 };

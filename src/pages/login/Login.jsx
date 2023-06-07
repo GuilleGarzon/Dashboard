@@ -8,7 +8,7 @@ export const LoginPage = () => {
   return (
     <>
       <section className="login container">
-        <Card>
+        <Card className="text-bg-light">
           <img className="login__image" src={LogoOL} alt="Logo ol Software" />
           <Card.Body>
             <h1 className="mb-4"> Bienvenido a OL Software</h1>

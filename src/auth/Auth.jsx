@@ -20,7 +20,6 @@ export const Auth = ({ component }) => {
         navigate("/");
       }
     }
-
     setStatus(true);
   };
 

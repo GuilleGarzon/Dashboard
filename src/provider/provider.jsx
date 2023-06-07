@@ -12,8 +12,7 @@ const initialUserValue = () => {
 };
 
 const initialState = {
-  user: initialUserValue(),
-  myAlert: null,
+  user: initialUserValue()
 };
 
 export const useAppContext = () => {
@@ -21,8 +20,6 @@ export const useAppContext = () => {
 };
 
 const reducer = (state, action) => {
-  console.log(action);
-  console.log(state);
   if (action.type === "LOGIN") {
     return {
       ...state,
@@ -37,7 +34,7 @@ export const Provider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ user: state.user, myAlert: state.myAlert, dispatch }}
+      value={{ user: state.user, dispatch }}
     >
       {children}
     </AppContext.Provider>
