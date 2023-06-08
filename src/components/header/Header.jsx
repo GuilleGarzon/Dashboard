@@ -12,8 +12,9 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
-  // const result = JSON.parse(atob(localStorage.getItem('profile'))); 
-  // const user = result.map(res => res.user);
+  const result = JSON.parse(localStorage.getItem('profile')); 
+ const user = result?.map(res => res.user);
+ console.log(user);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -82,7 +83,7 @@ export const Header = () => {
                       <span className="header__nav">Users</span>
                     </NavLink>  
 
-                    {/* {
+                    {
                       user && (
                         <span  
                           className="nav-link"
@@ -90,7 +91,7 @@ export const Header = () => {
                           <span className="header__nav">{user}</span>
                         </span>  
                       )
-                    }                   */}
+                    }                  
                     
                     <NavLink onClick={handleLogout} className="nav-link">
                     <span className="header__nav">Logout</span>

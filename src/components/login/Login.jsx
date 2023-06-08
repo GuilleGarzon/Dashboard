@@ -27,7 +27,7 @@ export const Login = () => {
     if (response.length) {
       localStorage.setItem(
       "profile",
-      btoa(JSON.stringify(response))
+      (JSON.stringify(response))
       );
       dispatch({
         type: "LOGIN",

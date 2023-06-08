@@ -5,7 +5,7 @@ const AppContext = createContext();
 const initialUserValue = () => {
   const item = localStorage.getItem("profile");
   if (item) {
-    return JSON.parse(atob(item));
+    return JSON.parse(item);
   }
 
   return {};
