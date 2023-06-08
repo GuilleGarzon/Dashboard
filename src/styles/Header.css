@@ -1,12 +1,13 @@
-.header-nav {
+.header__nav {
   color: black;
-  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
-.header-nav:hover {
-  border: 1px black solid;
-  color: white;
-  background-color: rgb(0, 132, 255);
-  padding: 6px;
-  border-radius: 10px;
+.header__nav:hover {
+  color: rgb(13, 118, 216); 
+}
+
+.nav__container {
+  color: rgb(13, 118, 216); 
 }

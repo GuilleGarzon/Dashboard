@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { useAppContext } from "../../provider/provider";
 import { NavLink } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
@@ -11,8 +10,10 @@ import '../../styles/Header.css';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { dispatch } = useAppContext();
   const ref = useRef();
+
+  const result = JSON.parse(atob(localStorage.getItem('profile'))); 
+  const user = result.map(res => res.user);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -24,12 +25,8 @@ export const Header = () => {
     }
   };
 
-  const handleLogout = () => {
-    dispatch({
-      type: "LOGIN",
-      value: null,
-    });
-    localStorage.removeItem("profile");
+  const handleLogout = () => {        
+    localStorage.clear();
   };
 
   return (
@@ -47,7 +44,7 @@ export const Header = () => {
             <Navbar.Brand>
               <img alt="Logo OL Software" src="https://olsoftware.com/wp-content/uploads/2021/04/cropped-Logo-Oficial-OL-Software.png"/>
             </Navbar.Brand>
-            <div className="nav-conainer">              
+            <div className="nav__container">              
 
               <Navbar.Toggle
                 ref={ref}
@@ -64,9 +61,9 @@ export const Header = () => {
                     <NavLink
                       onClick={ handleClick }
                       to="/dashboard"
-                      className="nav-link"
+                      className="nav-link "
                     >
-                      <span className="header-nav">DASHBOARD</span>
+                      <span className="header__nav">Dashboard</span>
                     </NavLink>
 
                     <NavLink
@@ -74,7 +71,7 @@ export const Header = () => {
                       to="/projects"
                       className="nav-link"
                     >
-                      <span className="header-nav">PROJECTS</span>
+                      <span className="header__nav">Projects</span>
                     </NavLink>
 
                     <NavLink
@@ -82,11 +79,21 @@ export const Header = () => {
                       to="/users"
                       className="nav-link"
                     >
-                      <span className="header-nav">USERS</span>
-                    </NavLink>
+                      <span className="header__nav">Users</span>
+                    </NavLink>  
+
+                    {
+                      user && (
+                        <span  
+                          className="nav-link"
+                        >
+                          <span className="header__nav">{user}</span>
+                        </span>  
+                      )
+                    }                  
                     
                     <NavLink onClick={handleLogout} className="nav-link">
-                    <span className="header-nav">LOGOUT</span>
+                    <span className="header__nav">Logout</span>
                     </NavLink>
                   </Nav>
                 </Offcanvas.Body>
