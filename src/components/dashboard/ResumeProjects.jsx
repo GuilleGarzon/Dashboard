@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import { Bar } from "react-chartjs-2";
 import { getResume } from "../../services/dashboard";
 
+import '../../styles/Commits.css';
+
 export const ResumeProjects = () => {
   const [resume, setResume] = useState(null);
   const [chartData, setChartData] = useState({});
@@ -24,9 +26,10 @@ export const ResumeProjects = () => {
       datasets: [
         {
           label: "Projects",
-          fill: false,
+          backgroundColor: '#2271b3',
+          borderColor: '#2271b3',
+          pointBorderColor: '#2271b3',
           data: data?.topProjects.map((m) => m.porcentaje),
-          tension: 0.5,
         },
       ],
     };
@@ -34,10 +37,10 @@ export const ResumeProjects = () => {
 
   return (
     <section className="report-container container">
-      <Card bg="gray-300" text="white" className="commits-card">
-        <Card.Body>
+      <Card className="commits-card">
+        <Card.Body className='commits__body' >
           <Card.Title><h1>Avance de proyectos</h1></Card.Title>
-          <p className="description">Reportes de entrega</p>
+          <p className="resume">Reportes de entrega</p>
           {resume?.topProjects && <Bar data={chartData} />}
         </Card.Body>
       </Card>

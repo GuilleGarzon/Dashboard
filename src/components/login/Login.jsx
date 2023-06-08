@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../provider/provider';
 
 import { login } from "../../services/login";
-import { getUser } from "../../services/users";
 import { Form } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
@@ -16,25 +15,7 @@ export const Login = () => {
   const handleChange = e => {
     const { value, name } = e.target;
     setForm({ ...form, [name]: value });
-  };  
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   const response = await login(form.username, form.password);
-  //   console.log(response.length);
-
-  //   if (response.length) {
-  //     localStorage.setItem(
-  //       "profile",
-  //       btoa(JSON.stringify(response.data))
-  //     );
-  //     dispatch({
-  //       type: "LOGIN",
-  //       value: response.data,
-  //     });
-  //     navigate("/");
-  //   }    
-  // }  
+  };    
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -46,7 +27,7 @@ export const Login = () => {
     if (response.length) {
       localStorage.setItem(
       "profile",
-      (JSON.stringify(response))
+      btoa(JSON.stringify(response))
       );
       dispatch({
         type: "LOGIN",

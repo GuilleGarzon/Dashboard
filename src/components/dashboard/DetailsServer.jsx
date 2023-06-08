@@ -29,18 +29,20 @@ export const DetailsServer = () => {
       datasets: [
         {
           label: "Week",
-          fill: Line,
+          backgroundColor: '#094293',
+          borderColor: '#094293',
+          pointBorderColor: '#094293',
           data: data?.time.map((m) => m.value),
-          tension: 0.5,
+          tension: 0.4,
         },
       ],
     };
   };
 
   return (
-    <section className="report-container container">
-      <Card className="commits-card">
-        <Card.Body>
+    <section className="report__container container">
+      <Card className="commits__card">
+        <Card.Body className='commits__body'>
           <Card.Title><h1>Detalles del Servidor</h1></Card.Title>
           <p className="description">
             Información sobre el consumo y uso del servidor principal para

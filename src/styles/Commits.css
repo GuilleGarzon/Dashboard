@@ -1,8 +1,4 @@
-.h2 {
-  color: black;
-}
-
-.report-container {
+.report__container {
   padding: 1rem;
   display: flex;
 }
@@ -11,16 +7,19 @@
   font-size: 16px;
   line-height: 18px;
   text-align: justify;
-  color: Black;
+  color: gray;
   margin: 0;
 }
 
-.commits-card {
-  width: 80%;
-  text-align: center;
+.commits__body {
+  background-color: #e4e4e4;
 }
 
-.commit-count {
+.commits__card {
+  width: 100%;
+}
+
+.commit__count {
   font-size: 2rem;
-  color: Black;
+  color: black;
 }
